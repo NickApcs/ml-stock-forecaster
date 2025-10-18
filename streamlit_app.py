@@ -7,7 +7,14 @@ Target Accuracy: 85-95%
 import streamlit as st
 import pandas as pd
 import numpy as np
-import yfinance as yf
+
+# Try importing yfinance with error handling
+try:
+    import yfinance as yf
+except ImportError:
+    st.error("Installing required packages... Please refresh the page in 1 minute.")
+    st.stop()
+
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 import plotly.express as px
@@ -16,10 +23,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # ML Libraries
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
-from sklearn.preprocessing import MinMaxScaler
+try:
+    import tensorflow as tf
+    from tensorflow import keras
+    from tensorflow.keras import layers
+    from sklearn.preprocessing import MinMaxScaler
+except ImportError:
+    st.error("Installing TensorFlow... Please refresh the page in 2 minutes.")
+    st.stop()
 
 # Technical Analysis (using pandas_ta as alternative to TA-Lib for Streamlit Cloud)
 try:
